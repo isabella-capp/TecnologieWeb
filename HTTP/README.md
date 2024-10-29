@@ -1,6 +1,6 @@
 # HTML and CSS Exercises
 
-Here there are the exercises proposed by the professor during the lab sessions. The professor demonstrated various examples located in the "esempi" folder, which guided us in completing these tasks.
+Here there are the exercises proposed by the professor during the lab sessions of HTML and CSS. The professor demonstrated various examples located in the "esempi" folder, which guided us in completing these tasks.
 
 ## Exercise 1: Styling the Page
 
