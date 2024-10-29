@@ -1,0 +1,84 @@
+/*
+    Nella pagina index.html è presente un form di registrazione.
+    Nel file script.js definire la funzione di callback per l’evento "onSubmit" del form per:
+    • Inviare i dati inseriti via Ajax all’URI https://httpbin.org/post
+    • Differenziare l’interazione con il DOM in base alla risposta ricevuto:
+        - In caso di successo, inserire nel form la scritta "Utente «nome utente» creato" (prendere il nome utente dalla risposta del server).
+        - In caso di errore, inserire nel form un messaggio di errore.
+
+*/
+
+function getRadioCheckedValue(radioGroup) {
+    for (option of radioGroup) {
+        if (option.checked){
+            return option.values;
+        }
+    }
+}
+
+function getCheckboxValues(checkBox) {
+    var checked = []
+    for (option of checkBox) {
+        if (option.checked){
+            checked.push(option.value)
+        }
+    }
+
+    return checked;
+}
+
+function getSelectedValues(sel){
+    return sel.options[sel.selectedIndex].value;
+}
+
+
+var form = document.getElementById('regForm');
+form.onsubmit = function(event) {
+  event.preventDefault(); // Prevent page refresh
+
+  // 1. Create XMLHttpRequest object to do a post request to https://httpbin.org/post
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "https://httpbvdcin.org/post", true);   //devo mandare dei dati quindi faccio una POST 
+
+  // 2. Set Request header to accept a JSON content
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  // 3. Get input values to send
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  var email = document.getElementById('email').value;
+  var gender = getRadioCheckedValue(document.getElementsByName('gender'));
+  var interests = getCheckboxValues(document.getElementsByName('interests'));
+  var country = getCheckboxValues(document.getElementsByName('country'));
+
+  // 4. Convert them to JSON
+  var params = JSON.stringify({
+      username: username,
+      password: password,
+      email: email,
+      gender: gender,
+      interests: interests,
+      country: country
+    });
+
+
+  // 5. Create the callback function to get server response
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+
+      var response = JSON.parse(xhr.response);
+      var data = JSON.parse(response.data);
+      var responseUsername = data.username;
+
+      document.getElementById('response').innerHTML = 'Utente ' + responseUsername + ' creato!';
+    } else if (xhr.readyState === 4) {
+      document.getElementById('response').innerHTML = 'Errore durante l\'invio dei dati.';
+      document.getElementById('response').style.color = 'red';
+    }
+  };
+
+  // 6. Send params to the server
+  xhr.send(params);
+};
+
+

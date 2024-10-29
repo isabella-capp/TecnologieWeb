@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="registration-container">
+        <form action="https://httpbin.org/post" method="post">
+            <div class="content">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Inserisci il nome">
+            
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Inserisci l'email">
+            
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Inserisci password">
+            
+                <label>Genere:</label>
+                <div class="radio-group">
+                  <label><input type="radio" name="gender" value="male" required> Maschio</label>
+                  <label><input type="radio" name="gender" value="female" required> Femmina</label>
+                  <label><input type="radio" name="gender" value="other" required> Altro</label>
+                </div>
+          
+                <label>Interessi:</label>
+                <div class="checkbox-group">
+                  <label><input type="checkbox" name="interests" value="sport"> Sport</label>
+                  <label><input type="checkbox" name="interests" value="music"> Musica</label>
+                  <label><input type="checkbox" name="interests" value="technology"> Tecnologia</label>
+                  <label><input type="checkbox" name="interests" value="travel"> Viaggi</label>
+                  <label><input type="checkbox" name="interests" value="culture"> Cultura</label>
+                </div>
+                
+                <label>Paese di residenza:</label>
+                <select id="paese" required>
+                    <option value="">Seleziona un paese</option>
+                    <option value="italia">Italia</option>
+                    <option value="america">America</option>
+                    <option value="europea">Europea</option>
+                    <option value="africa">Africa</option>
+                    <option value="asia">Asia</option>
+                    <option value="oceania">Oceania</option>
+                </select>
+    
+                <button>
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                        <span>Send</span>
+                </button>
+            </div>
+        </form>   
+    </div>
+</body>
+</html>

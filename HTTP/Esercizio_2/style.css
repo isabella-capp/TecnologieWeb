@@ -1,0 +1,140 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+body {
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+
+    background-image: -webkit-linear-gradient(top right, #0022ffd8 0%,#00d5ff 80%); 
+    overflow-y: hidden;
+}
+
+.registration-container {
+  display: flex;
+  justify-content: center;
+
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  
+  width: 500px;
+  max-height: 600px;
+
+  scroll-behavior: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+label {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"], input[type="email"],  select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.radio-group, .checkbox-group {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.radio-group label, .checkbox-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+button {
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  button:hover span {
+    transform: translateX(5em);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  
