@@ -1,13 +1,3 @@
-/*
-    Nella pagina index.html è presente un form di registrazione.
-    Nel file script.js definire la funzione di callback per l’evento "onSubmit" del form per:
-    • Inviare i dati inseriti via Ajax all’URI https://httpbin.org/post
-    • Differenziare l’interazione con il DOM in base alla risposta ricevuto:
-        - In caso di successo, inserire nel form la scritta "Utente «nome utente» creato" (prendere il nome utente dalla risposta del server).
-        - In caso di errore, inserire nel form un messaggio di errore.
-
-*/
-
 function getRadioCheckedValue(radioGroup) {
     for (option of radioGroup) {
         if (option.checked){

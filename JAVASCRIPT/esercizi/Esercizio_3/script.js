@@ -1,15 +1,3 @@
-/* ESERCIZIO:
-1.  Nel file index.html creare un campo di input e un bottone.
-2.  Scrivere codice Javascript data una sequenza di voti di lunghezza
-    non nota a priori, ne restituisca la media e la variabilità:
-    - elenco dei voti inseriti
-    - voto minimo e voto massimo
-    - media aritmetica e giudizio sintetico (6 fasce tra 18 e 33)
-    - variabilità come “errore medio” e giudizio sintetico (4 fasce tra 0 e 7.5)
-3.  Ciascun voto deve essere un numero compreso tra 18 e 33:
-4.  controllare opportunamente i dati in input
-5.  Definire un oggetto Statistics per l’esecuzione di tutti i calcoli */
-
 class Statistics {
     constructor(voti) {
         this.voti = voti;
