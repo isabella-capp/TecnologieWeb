@@ -66,7 +66,5 @@ Transform pages to interact with Flask APIs using React components and AJAX.
    - Fetch and display a list of books.
    - Add functionality to insert a new book and send it to the API via the same endpoint.
 
----
 
-These exercises provide foundational skills for integrating React with a Flask backend, building dynamic SPAs, and managing state and routing effectively. They also illustrate React’s versatility, even when working without advanced toolchains like Node.js or modern bundlers.
 
