@@ -1,6 +1,6 @@
 # JavaScript Exercises
 
-Here there are the exercises proposed by the professor during the lab sessions. These exercises were introduced after reviewing a series of examples located in the "esempi" folder. 
+Here there are the exercises proposed by the professor during the lab sessions. These exercises were introduced after reviewing a series of examples located in the "Examples" folder. 
 
 Styling was not a requirement for these tasks, but I chose to add some styles to enhance the presentation.
 
