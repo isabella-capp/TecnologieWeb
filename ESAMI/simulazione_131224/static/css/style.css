@@ -1,0 +1,139 @@
+:root {
+--primary-color: #0099cc;
+--secondary-color: #0086b3;
+--accent-color: #e74c3c;
+--background-color: #f2f2f2;
+--text-color: #333;
+--border-color: #bdc3c7;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+h2 {
+    color: black;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.small-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 30%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  background-color: var(--secondary-color);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  border-color:  #006080;
+  border-width: 3px;
+}
+
+.nav-links {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-item{
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.table {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.content {
+    flex: 1;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+.product-list {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .product-table th,
+  .product-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .product-table th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .product-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  .product-table tr:hover {
+    background-color: #e9ecef;
+  }
+  

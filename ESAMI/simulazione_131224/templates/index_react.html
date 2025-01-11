@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Flask React SPA</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<script type="text/javascript">
+
+    var useEffect = React.useEffect;
+    var BrowserRouter = ReactRouterDOM.BrowserRouter;
+    var Route = ReactRouterDOM.Route;
+    var Link = ReactRouterDOM.Link;
+    var Switch = ReactRouterDOM.Switch;
+
+    function ProductComponent({ match }) {
+        const productId = match.params.id;
+        const [productData, setProductData] = React.useState(null);
+
+        function fetchProduct() {
+            fetch(`/api/prodotto/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data.prodotto)
+                setProductData(data.prodotto)
+            })
+            .catch(function (error) {
+                console.error(error)
+            });
+        }
+
+        useEffect(() => {
+            fetchProduct();
+        }, [productId]);
+
+        return React.createElement(
+            'div',
+            { className: "card", style: { width: "18rem", margin: "0 auto" } },
+            productData ? React.createElement('div',
+                { className: "card-body" },
+                React.createElement("h1", { className: "card-title prodotto-title" }, productData.nome),
+                React.createElement("p", { className: "card-text prodotto-text", id: `${productId}` },
+                    React.createElement("strong", null, "Codice:"),
+                    productData.codice
+                ),
+                React.createElement("p", { className: "card-text prodotto-text" },
+                    React.createElement("strong", null, "Prezzo:"),
+                    productData.prezzo
+                ),
+                React.createElement("p", { className: "card-text prodotto-text" },
+                    React.createElement("strong", null, "Quantità:"),
+                    productData.quantita
+                ),
+            ) : React.createElement("p", null, "Recupero dati prodotto...")
+        );
+    }
+
+    function ProductList() {
+        const [productsData, setProductsData] = React.useState(null);
+
+        function fetchProducts() {
+            fetch('/api/prodotti', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    setProductsData(data.prodotti);
+                })
+                .catch(function (error) { console.error(error); });
+        }
+
+
+        function deleteProduct(code) {
+            const confirmDelete = window.confirm('Sei sicuro di voler eliminare il prodotto?');
+
+            if (!confirmDelete) {
+                return;
+            }
+
+            fetch(`/api/elimina/${code}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Prodotto eliminato con successo.');
+                        fetchProducts();
+                    } else {
+                        alert('Errore durante l\'eliminazione del prodotto.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    alert('Errore durante l\'eliminazione del prodotto.');
+                });
+        }
+
+        useEffect(() => {
+            fetchProducts();
+        }, []);
+
+
+        return React.createElement(
+            'div',
+            { className: 'content' },
+            React.createElement('h1', null, 'Inventario Prodotti'),
+
+            React.createElement(
+                'table',
+                { className: 'product-table' },
+                React.createElement(
+                    // create thead
+                    'thead', null, React.createElement(
+                        'tr',
+                        null,
+                        React.createElement('th', null, 'codice'),
+                        React.createElement('th', null, 'nome'),
+                        React.createElement('th', null, 'quantità'),
+                        React.createElement('th', null, 'prezzo'),
+                        React.createElement('th', null, ''),
+                        React.createElement('th', null, ''),
+                    )
+                ),
+                React.createElement(
+                    // create a tbody for each product
+                    'tbody', null,
+                    productsData
+                    ? productsData.map(function (product, index) {
+                        return React.createElement(
+                            'tr',
+                            { key: index },
+                            React.createElement("td", null,
+                                React.createElement(Link, { to: `react/product/${product.codice}` }, product.codice)
+                            ),
+                            console.log(product),
+                            React.createElement('td', null, product.codice),
+                            React.createElement('td', null, product.nome),
+                            React.createElement('td', null, product.quantita),
+                            React.createElement('td', null, product.prezzo),
+                            React.createElement('td', null,
+                                React.createElement('button', {
+                                    className: 'btn btn-primary',
+                                    onClick: () => deleteProduct(product.codice)
+                                }, 'delete')
+                            )
+                        );
+                    }) : React.createElement('tr', null, React.createElement('td', { colSpan: 5 }, 'Nessun dato disponibile'))
+                )
+            ) 
+        );
+    }
+
+
+    function App() {
+        return React.createElement(
+            BrowserRouter,
+            null,
+            React.createElement(
+                'div',
+                null,
+                React.createElement(
+                    'nav',
+                    { className: 'navbar navbar-expand-lg navbar-light bg-[#0086b3]' },
+                    React.createElement(
+                        'div',
+                        { className: 'container' },
+                        React.createElement(Link, { to: '/react', className: 'navbar-brand' }, 'Magazzino'),
+                        React.createElement("button", {
+                            className: "navbar-toggler",
+                            type: "button",
+                            data_bs_toggle: "collapse",
+                            data_bs_target: "#navbarNav"
+                        }, React.createElement("span", { className: 'navbar-toggler-icon' }, ''))
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'collapse navbar-collapse', id: "navbarNav" },
+                        React.createElement(
+                            'ul',
+                            { className: 'navbar-nav' },
+                            React.createElement(
+                                'li',
+                                { className: 'nav-item' },
+                                React.createElement(Link, { to: '/react/product', className: 'nav-link' }, 'Prodotti')
+                            )
+                        )
+
+                    )
+                ),
+                React.createElement(
+                    Switch,
+                    null,
+                    React.createElement(Route, { exact: true, path: '/react', component: ProductList }),
+                    React.createElement(Route, { path: '/react/product/:id', component: ProductComponent }),
+                )
+            )
+        );
+    }
+
+
+    var root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App, null))
+
+</script>
+
+
+
+</html>
