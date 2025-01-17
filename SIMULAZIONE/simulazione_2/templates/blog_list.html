@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - post{% endblock %}
+
+{% block content %}
+<div class="blog-page text-center">
+    <h1 class="mb-4">Benvenuti nel nostro Blog</h1>
+
+    <section class="intro">
+        <p class="lead">
+            Questo blog è un punto di incontro per appassionati di tecnologia, viaggi e storie di vita.
+            Qui troverai articoli coinvolgenti, approfondimenti interessanti e prospettive uniche.
+        </p>
+    </section>
+
+    <section>
+        <h1>Articoli</h1>
+        <div class="posts">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="card mb-4">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.author }}</p>
+                        <p>{{ post.date }}</p>
+                        <p>{{ post.category }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Nessun post trovato</p>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

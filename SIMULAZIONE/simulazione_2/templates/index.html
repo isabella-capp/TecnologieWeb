@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - Home{% endblock %}
+
+{% block content %}
+<div class="home-page text-center">
+    <h1 class="mb-4">Benvenuti nel nostro Blog</h1>
+
+    <section class="intro">
+        <p class="lead">
+            Questo blog è un punto di incontro per appassionati di tecnologia, viaggi e storie di vita.
+            Qui troverai articoli coinvolgenti, approfondimenti interessanti e prospettive uniche.
+        </p>
+    </section>
+
+    <section>
+        <h1>Cosa troverai nel nostro Blog</h1>
+        <div class="categories">
+            {% for category in post_categories %}
+                <div class="category">
+                    <h2>{{ category.name }}</h2>
+                    <p>{{ category.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <section class="call-to-action">
+        <a class="btn btn-success btn-lg">Scopri gli Articoli</a>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - new_post{% endblock %}
+
+{% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('form').addEventListener('submit', (event) => submitForm(event));
+    });
+
+
+    async function submitForm(event) {
+        event.preventDefault(); //prevent form from refreshing the page
+    
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+       
+        try {
+            const response = await fetch('/new_post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                console.log(result);
+                alert('Data added successfully');
+                window.location.href = '/'; //redirect to a page
+            } else {
+                console.log(result);
+                alert(`Error: ${result.message}`);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+</script>
+
+<form id="form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required />
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+    
+    <button type="submit">submit</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block titolo %}Elenco Prodotti{% endblock %}
+
+{% block content %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButton = document.getElementById('delete-button');
+        prodotto_codice = document.getElementById('{{ prodotto.codice }}').textContent.split(':')[1].trim();
+        
+        deleteButton.addEventListener('click', function () {
+            fetch(`/api/elimina/${prodotto_codice}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Prodotto eliminato con successo.');
+                    window.location.href = '/';
+                } else {
+                    alert('Errore durante l\'eliminazione del prodotto.');
+                }
+            })
+            .catch(error => {
+                console.error('Errore:', error);
+                alert('Errore durante l\'eliminazione del prodotto.');
+            });
+
+    });
+    });
+</script>
+
+{% if prodotto %}
+    <div class="container mt-5">
+        <div class="small-container">
+            <h1 class="text-center mb-4">Prodotto {{ prodotto.codice }}</h1>
+            <div class="card p-4">
+                <h2>{{ prodotto.nome }}</h2>
+                <p class="card-text" id="{{ prodotto.codice }}"><strong>Codice:</strong> {{ prodotto.codice }}</p>
+                <p class="card-text"><strong>Quantità:</strong> {{ prodotto.quantita }}</p>
+                <p class="card-text"><strong>Prezzo:</strong> {{ prodotto.prezzo }}</p>
+                <button id="delete-button" class="btn btn-danger">
+                    Elimina
+                </button>
+                
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center">
+        Prodotto non trovato.
+    </div>
+{% endif %}
+
+{% endblock %}
