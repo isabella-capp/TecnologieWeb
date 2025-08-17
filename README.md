@@ -1,6 +1,6 @@
 <div align="right">
 
-![In Progress](https://img.shields.io/badge/In%20Progress-blue?style=for-the-badge)
+![Finished](https://img.shields.io/badge/In%20Progress-blue?style=for-the-badge)
 
 </div>
 
